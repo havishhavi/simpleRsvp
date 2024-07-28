@@ -35,11 +35,6 @@ func CreateRSVP(c *gin.Context) {
 		return
 	}
 
-	if err := handlers.SendEmail(rsvp.Email, "RSVP Confirmation", "Thank you for your RSVP \n Address: 10112 Tidwell Street, Krugerville, Texas, 76227"); err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to send email: " + err.Error()})
-		return
-	}
-
 	totalPersons, err := getTotalPersons()
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to calculate total persons: " + err.Error()})
